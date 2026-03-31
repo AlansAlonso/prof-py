@@ -148,4 +148,4 @@ O agente cobre as 9 semanas do plano de ensino original:
 
 ## 👥 Créditos
 
-Projeto expandido a partir do **PG-LLM-Agent** original, desenvolvido como projeto educacional para suporte a alunos de programação Python.
+Projeto expandido a partir do **PG-LLM-Agent** original, desenvolvido como projeto educacional para suporte a alunos de programação Python. O projeto foi expandido com auxílio da ferramenta Manus, e parte da razão por trás deste projeto foi entender melhor essa ferramenta e como melhor utilizá-la.
