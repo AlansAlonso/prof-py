@@ -1,0 +1,99 @@
+Semana 1:
+- Explicar o que é programação
+- Entender como computadores executam instruções
+- Executar programas Python em um ambiente de desenvolvimento
+- Escrever o programa "Hello World"
+- Utilizar a função print()
+
+Semana 2:
+- Criar variáveis
+- Entender os tipos básicos de dados (int, float, bool, str)
+- Utilizar operadores matemáticos
+- Resolver problemas simples com cálculos
+
+Semana 3:
+- Criar strings utilizando aspas simples, aspas duplas e aspas triplas
+- Concatenar strings utilizando o operador +
+- Replicar strings utilizando o operador *
+- Utilizar métodos básicos de manipulação de strings
+
+Semana 4:
+- Utilizar input() para entrada de dados do usuário
+- Converter dados entre tipos (str, int, float)
+- Validar entradas do usuário
+- Criar programas interativos simples
+
+Semana 5:
+- Escrever programas utilizando estruturas condicionais if, elif e else
+- Utilizar operadores booleanos (and, or, not)
+- Criar programas que tomem decisões com base em condições
+
+Semana 6:
+- Escrever programas utilizando loops for
+- Utilizar a função range()
+- Escrever programas utilizando loops while
+- Resolver problemas com repetição de instruções
+
+Semana 7:
+- Criar listas
+- Acessar elementos de listas
+- Percorrer listas utilizando estruturas de repetição
+- Adicionar e remover elementos de listas
+
+Semana 8:
+- Criar dicionários
+- Acessar chaves e valores em dicionários
+- Percorrer dicionários utilizando loops
+- Organizar dados estruturados com dicionários
+
+Semana 9:
+- Definir funções
+- Criar funções que recebem parâmetros
+- Criar funções que retornam valores
+- Utilizar parâmetros padrão
+
+Semana 10:
+- Organizar programas utilizando múltiplas funções
+- Separar código em módulos
+- Importar funções entre arquivos
+- Documentar funções com docstrings
+
+Semana 11:
+- Ler arquivos utilizando open()
+- Escrever arquivos em Python
+- Trabalhar com arquivos de texto
+- Processar dados armazenados em arquivos
+
+Semana 12:
+- Trabalhar com dados no formato JSON
+- Converter JSON para dicionários Python
+- Converter dicionários para JSON
+- Preparar dados para comunicação entre sistemas
+
+Semana 13:
+- Entender o conceito de API
+- Realizar requisições HTTP
+- Utilizar a biblioteca requests
+- Consumir APIs públicas
+- Processar respostas em JSON
+
+Semana 14:
+- Entender o conceito de Web Services
+- Entender o modelo REST
+- Entender endpoints e rotas
+- Entender métodos HTTP (GET, POST, PUT, DELETE)
+
+Semana 15:
+- Criar um servidor simples utilizando FastAPI
+- Criar endpoints GET
+- Criar endpoints POST
+- Enviar e receber dados no formato JSON
+- Testar APIs utilizando Swagger ou Postman
+
+Semana 16:
+- Desenvolver um web service simples
+- Criar endpoints para listar dados
+- Criar endpoints para inserir dados
+- Criar endpoints para atualizar dados
+- Criar endpoints para remover dados
+- Documentar e testar o funcionamento da API
