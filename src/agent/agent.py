@@ -190,5 +190,3 @@ corrigir respostas ou analisar progresso do aluno.
     def chat(self, pergunta: str, historico: list = None) -> str:
         return chat_com_agente(pergunta, historico)
 
-    def analisar_progresso(self, semanas_concluidas: list, dificuldades_por_semana: dict) -> str:
-        return analisar_progresso(semanas_concluidas, dificuldades_por_semana)
