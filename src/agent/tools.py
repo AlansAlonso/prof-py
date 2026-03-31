@@ -236,9 +236,6 @@ def gerar_plano_estudos(semana_atual: int, horas_por_dia: int, dificuldades: str
         - **Terça-feira** (Xh): [atividade]
         ... e assim por diante
 
-        ### Recursos recomendados
-        (Sugira recursos gratuitos: documentação oficial do Python, vídeos, exercícios online)
-
         ### Metas da semana
         (Liste 3 metas concretas e mensuráveis para esta semana)
 
@@ -357,59 +354,3 @@ def chat_com_agente(pergunta: str, historico: list = None) -> str:
     return response.content
 
 
-# ─────────────────────────────────────────────
-# FERRAMENTA 7 — Comparar Semanas / Progresso
-# ─────────────────────────────────────────────
-
-def analisar_progresso(semanas_concluidas: list, dificuldades_por_semana: dict) -> str:
-    """
-    Analisa o progresso do aluno com base nas semanas concluídas
-    e dificuldades reportadas, gerando um relatório de evolução.
-    """
-    plano = _load_plano()
-    llm = _get_llm(temperature=0.3)
-
-    dificuldades_str = json.dumps(dificuldades_por_semana, ensure_ascii=False, indent=2)
-
-    prompt = PromptTemplate.from_template(
-        """
-        Você é um orientador educacional analisando o progresso de um aluno.
-
-        Plano de ensino completo:
-        {plano}
-
-        Semanas concluídas pelo aluno: {semanas_concluidas}
-        Dificuldades reportadas por semana: {dificuldades}
-
-        Gere um **relatório de progresso** completo:
-
-        ## 📊 Relatório de Progresso do Aluno
-
-        ### Visão Geral
-        (Resumo do progresso: quantas semanas concluídas, percentual do curso, etc.)
-
-        ### Pontos fortes identificados
-        (Com base nas semanas sem dificuldades, destaque o que o aluno domina bem)
-
-        ### Áreas que precisam de atenção
-        (Analise as dificuldades reportadas e identifique padrões)
-
-        ### Recomendações de revisão
-        (Sugira quais tópicos o aluno deve revisar antes de avançar)
-
-        ### Próximas semanas
-        (Prepare o aluno para o que está por vir, conectando com o que já aprendeu)
-
-        ### Mensagem motivacional
-        (Uma mensagem personalizada de incentivo baseada no progresso do aluno)
-
-        Escreva tudo em **Português do Brasil**. Seja honesto, construtivo e encorajador.
-        """
-    )
-
-    chain = prompt | llm
-    return chain.invoke({
-        "plano": plano,
-        "semanas_concluidas": ", ".join(map(str, semanas_concluidas)),
-        "dificuldades": dificuldades_str,
-    }).content

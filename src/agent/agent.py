@@ -139,6 +139,7 @@ corrigir respostas ou analisar progresso do aluno.
                 name="gerar_plano_estudos",
                 description=(
                     "Cria um plano de estudos personalizado para um aluno de Python.\n\n"
+                    "O plano não deve recomendar cursos e ferramentas externas.\n\n"
                     "O plano deve considerar:\n"
                     "- semana atual do curso\n"
                     "- horas disponíveis por dia\n"
