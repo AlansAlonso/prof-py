@@ -5,3 +5,6 @@ streamlit>=1.40.0
 python-dotenv>=1.0.0
 pydantic>=2.0.0
 openai>=1.50.0
+
+# Modo agente (opcional): observabilidade dos passos do agente com Langfuse
+langfuse>=3.0.0
