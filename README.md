@@ -53,6 +53,15 @@ Cria um plano semanal adaptado às horas disponíveis e dificuldades do aluno.
 ### 6. 💬 Chat com Prof. Py
 Chat livre com histórico de conversa para tirar dúvidas sobre Python e programação.
 
+### 7. 🤖 Modo Agente
+Chat livre em que **o próprio modelo escolhe quais ferramentas usar** (ex.: "me dá exercícios da semana 3 e depois corrige a minha resposta"). A interface mostra cada ferramenta chamada e seus argumentos.
+
+As abas 1 a 6 são um *workflow* (o código decide qual função chamar). Esta aba é um *agente* (o LLM decide). O loop está em `src/agent/modo_agente.py`, escrito à mão e comentado, reaproveitando as ferramentas e o system prompt de `agent.py`.
+
+**Langfuse (opcional):** defina `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` (e `LANGFUSE_HOST`) no `.env` para enviar traces do modo agente. Sem essas variáveis, tudo funciona normalmente.
+
+Testes (sem chamar a API): `pip install pytest && python -m pytest tests -q`
+
 ---
 
 ## 🛠️ Instalação e Execução
@@ -91,8 +100,10 @@ PG-LLM-Agent-expanded/
 │   └── agent/
 │       ├── agent.py          # Classe principal do agente (AgenteEducacional)
 │       ├── tools.py          # Ferramentas individuais do agente
+│       ├── modo_agente.py    # Loop do agente (LLM escolhe as ferramentas)
 │       ├── app.py            # Interface Streamlit multi-abas
 │       └── plano_ensino.txt  # Plano de ensino da disciplina
+├── tests/                # Testes do modo agente (LLM falso)
 ├── requirements.txt
 ├── .env.example
 └── README.md
