@@ -18,7 +18,6 @@ O **Prof. Py** é um agente educacional baseado em LLM (GPT-4.1-mini) construíd
 | Quiz de múltipla escolha | ❌ | ✅ |
 | Plano de estudos personalizado | ❌ | ✅ |
 | Chat livre com o agente | ❌ | ✅ |
-| Análise de progresso do aluno | ❌ | ✅ |
 | Interface multi-abas moderna | ❌ | ✅ |
 | Histórico de conversa no chat | ❌ | ✅ |
 | Controle de progresso na sidebar | ❌ | ✅ |
@@ -53,9 +52,6 @@ Cria um plano semanal adaptado às horas disponíveis e dificuldades do aluno.
 
 ### 6. 💬 Chat com Prof. Py
 Chat livre com histórico de conversa para tirar dúvidas sobre Python e programação.
-
-### 7. 📊 Análise de Progresso
-Relatório de evolução baseado nas semanas concluídas e dificuldades reportadas.
 
 ---
 
@@ -120,19 +116,26 @@ Usuário (Streamlit UI)
 
 ## 📖 Plano de Ensino
 
-O agente cobre as 9 semanas do plano de ensino original:
+O agente cobre as 16 semanas do plano de ensino (`src/agent/plano_ensino.txt`):
 
 | Semana | Conteúdo Principal |
 |---|---|
-| 1 | Introdução à programação, Hello World |
-| 2 | Variáveis e atribuição |
-| 3 | Tipos de dados: int, float, boolean, strings |
-| 4 | Strings: criação, concatenação, replicação, funções |
-| 5 | Strings: operadores, funções, input() |
-| 6 | Condicionais e operadores booleanos |
-| 7 | Condicionais compostas e ramificações |
-| 8 | Loops for e while, função range() |
-| 9 | Listas: criação, concatenação, iteração |
+| 1 | Introdução à programação, Hello World, print() |
+| 2 | Variáveis, tipos básicos e operadores matemáticos |
+| 3 | Strings: aspas, concatenação, replicação e métodos |
+| 4 | input(), conversão de tipos e validação de entradas |
+| 5 | Condicionais (if/elif/else) e operadores booleanos |
+| 6 | Loops for e while, função range() |
+| 7 | Listas: criação, acesso, iteração, adicionar e remover |
+| 8 | Dicionários: chaves, valores e iteração |
+| 9 | Funções: parâmetros, retorno e valores padrão |
+| 10 | Múltiplas funções, módulos, imports e docstrings |
+| 11 | Leitura e escrita de arquivos de texto |
+| 12 | JSON e conversão de/para dicionários |
+| 13 | APIs e requisições HTTP com requests |
+| 14 | Web Services, REST, endpoints e métodos HTTP |
+| 15 | Servidor simples com FastAPI (GET e POST) |
+| 16 | Web service completo (listar, inserir, atualizar, remover) |
 
 ---
 
