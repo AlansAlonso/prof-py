@@ -1,7 +1,11 @@
-langchain>=0.3.0
-langchain-openai>=0.2.0
-langchain-community>=0.3.0
-streamlit>=1.40.0
-python-dotenv>=1.0.0
-pydantic>=2.0.0
-openai>=1.50.0
+# Versões testadas com Python 3.13 (README pede 3.11+).
+# Limites de versão evitam que uma atualização maior quebre o projeto.
+langchain>=1.0,<2
+langchain-core>=1.0,<2
+langchain-openai>=1.0,<2
+streamlit>=1.40,<2
+python-dotenv>=1.0,<2
+pydantic>=2.0,<3
+
+# Modo agente (opcional): observabilidade dos passos do agente com Langfuse
+langfuse>=3.0,<5

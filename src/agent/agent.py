@@ -49,7 +49,7 @@ class AgenteEducacional:
     """
     Agente educacional completo para suporte a alunos de programação Python.
     Possui ferramentas para geração de exercícios, resumos, correção,
-    quiz, plano de estudos, chat livre e análise de progresso.
+    quiz, plano de estudos e chat livre.
     """
 
     def __init__(self):
@@ -75,7 +75,7 @@ Sempre:
 - adapte sua linguagem para alunos iniciantes
 
 Use ferramentas apenas quando necessário para gerar exercícios,
-corrigir respostas ou analisar progresso do aluno.
+corrigir respostas ou montar planos de estudo.
 """
         )
 

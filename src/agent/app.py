@@ -9,6 +9,7 @@ from datetime import datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from agent import AgenteEducacional
+from modo_agente import executar_agente
 
 # ─────────────────────────────────────────────
 # Configuração da página
@@ -29,8 +30,8 @@ if "semana_selecionada" not in st.session_state:
     st.session_state.semana_selecionada = 1
 if "semanas_concluidas" not in st.session_state:
     st.session_state.semanas_concluidas = []
-if "chat_historico" not in st.session_state:
-    st.session_state.chat_historico = []
+if "agente_historico" not in st.session_state:
+    st.session_state.agente_historico = []  # histórico próprio do Modo agente
 
 # ─────────────────────────────────────────────
 # CSS customizado
@@ -123,7 +124,7 @@ with st.sidebar:
     ✅ Correção de exercícios<br>
     🧩 Quiz de verificação<br>
     📅 Plano de estudos<br>
-    💬 Chat livre<br>
+    🤖 Modo agente<br>
     </div>
     """, unsafe_allow_html=True)
 
@@ -143,7 +144,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 tabs = st.tabs([
-    "📝 Exercícios", "📚 Resumo", "✅ Correção", "🧩 Quiz", "📅 Plano", "💬 Chat",
+    "📝 Exercícios", "📚 Resumo", "✅ Correção", "🧩 Quiz", "📅 Plano", "🤖 Modo agente",
 ])
 
 semana_atual = st.session_state.semana_selecionada
@@ -188,22 +189,40 @@ with tabs[4]:
         with st.spinner("Gerando..."):
             st.markdown(carregar_agente().gerar_plano_estudos(semana_atual, horas, difs or "Nenhuma"))
 
-# ABA 5: Chat
+# ABA 5: Modo agente
+# Diferente das abas anteriores (onde o CÓDIGO decide qual função chamar, um workflow),
+# aqui quem decide é o LLM: ele lê a mensagem e escolhe as ferramentas (ver modo_agente.py).
+def mostrar_passos(passos):
+    """Mostra cada ferramenta que o agente decidiu chamar, com os argumentos usados."""
+    for passo in passos:
+        argumentos = ", ".join(f"{k}={v!r}" for k, v in passo["argumentos"].items())
+        with st.expander(f"🔧 {passo['ferramenta']}({argumentos})"):
+            st.markdown("**Resultado da ferramenta:**")
+            st.markdown(passo["resultado"])
+
+
 with tabs[5]:
-    st.markdown("## 💬 Chat com Prof. Py")
-    for msg in st.session_state.chat_historico:
+    st.markdown("## 🤖 Modo agente")
+    st.caption("Escreva livremente. O modelo escolhe sozinho quais ferramentas usar. "
+               "Ex.: *me dá exercícios da semana 3 e depois corrige a minha resposta*")
+
+    for msg in st.session_state.agente_historico:
         with st.chat_message(msg["role"]):
+            mostrar_passos(msg.get("passos", []))
             st.markdown(msg["content"])
-    
-    if prompt := st.chat_input("Dúvida sobre Python?"):
-        st.session_state.chat_historico.append({"role": "user", "content": prompt})
+
+    if prompt_agente := st.chat_input("Peça o que quiser ao agente...", key="chat_agente"):
         with st.chat_message("user"):
-            st.markdown(prompt)
+            st.markdown(prompt_agente)
         with st.chat_message("assistant"):
-            with st.spinner("Pensando..."):
-                res = carregar_agente().chat(prompt, st.session_state.chat_historico[:-1])
-                st.markdown(res)
-                st.session_state.chat_historico.append({"role": "assistant", "content": res})
+            with st.spinner("O agente está decidindo..."):
+                resposta, passos = executar_agente(
+                    carregar_agente(), prompt_agente, st.session_state.agente_historico
+                )
+            mostrar_passos(passos)
+            st.markdown(resposta)
+        st.session_state.agente_historico.append({"role": "user", "content": prompt_agente})
+        st.session_state.agente_historico.append({"role": "assistant", "content": resposta, "passos": passos})
 
 
 st.markdown("---")
