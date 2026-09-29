@@ -30,8 +30,6 @@ if "semana_selecionada" not in st.session_state:
     st.session_state.semana_selecionada = 1
 if "semanas_concluidas" not in st.session_state:
     st.session_state.semanas_concluidas = []
-if "chat_historico" not in st.session_state:
-    st.session_state.chat_historico = []
 if "agente_historico" not in st.session_state:
     st.session_state.agente_historico = []  # histórico próprio do Modo agente
 
@@ -126,7 +124,7 @@ with st.sidebar:
     ✅ Correção de exercícios<br>
     🧩 Quiz de verificação<br>
     📅 Plano de estudos<br>
-    💬 Chat livre<br>
+    🤖 Modo agente<br>
     </div>
     """, unsafe_allow_html=True)
 
@@ -146,7 +144,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 tabs = st.tabs([
-    "📝 Exercícios", "📚 Resumo", "✅ Correção", "🧩 Quiz", "📅 Plano", "💬 Chat", "🤖 Modo agente",
+    "📝 Exercícios", "📚 Resumo", "✅ Correção", "🧩 Quiz", "📅 Plano", "🤖 Modo agente",
 ])
 
 semana_atual = st.session_state.semana_selecionada
@@ -191,25 +189,7 @@ with tabs[4]:
         with st.spinner("Gerando..."):
             st.markdown(carregar_agente().gerar_plano_estudos(semana_atual, horas, difs or "Nenhuma"))
 
-# ABA 5: Chat
-with tabs[5]:
-    st.markdown("## 💬 Chat com Prof. Py")
-    for msg in st.session_state.chat_historico:
-        with st.chat_message(msg["role"]):
-            st.markdown(msg["content"])
-    
-    if prompt := st.chat_input("Dúvida sobre Python?"):
-        st.session_state.chat_historico.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            st.markdown(prompt)
-        with st.chat_message("assistant"):
-            with st.spinner("Pensando..."):
-                res = carregar_agente().chat(prompt, st.session_state.chat_historico[:-1])
-                st.markdown(res)
-                st.session_state.chat_historico.append({"role": "assistant", "content": res})
-
-
-# ABA 6: Modo agente
+# ABA 5: Modo agente
 # Diferente das abas anteriores (onde o CÓDIGO decide qual função chamar, um workflow),
 # aqui quem decide é o LLM: ele lê a mensagem e escolhe as ferramentas (ver modo_agente.py).
 def mostrar_passos(passos):
@@ -221,7 +201,7 @@ def mostrar_passos(passos):
             st.markdown(passo["resultado"])
 
 
-with tabs[6]:
+with tabs[5]:
     st.markdown("## 🤖 Modo agente")
     st.caption("Escreva livremente. O modelo escolhe sozinho quais ferramentas usar. "
                "Ex.: *me dá exercícios da semana 3 e depois corrige a minha resposta*")
